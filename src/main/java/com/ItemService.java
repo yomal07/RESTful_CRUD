@@ -26,7 +26,7 @@ public class ItemService {
 	@Produces(MediaType.TEXT_HTML)
 	public String raedItems()
 	{
-		return "Hello";
+		return itemObj.readItems();
 	}
 	
 }
