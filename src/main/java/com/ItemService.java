@@ -66,6 +66,25 @@ public class ItemService {
 		String output = itemObj.updateItem(itemID, itemCode, itemName, itemPrice, itemDesc);
 		return output;
 	} 
+	
+	@DELETE
+	@Path("/")
+	//to specify the input type as XML
+	@Consumes(MediaType.APPLICATION_XML)
+	//to produce a status message as an output
+	@Produces(MediaType.TEXT_PLAIN)
+	public String deleteItem(String itemData) 
+	{ 
+		//convert the input to XML document
+		Document doc = Jsoup.parse(itemData, "", Parser.xmlParser());
+		
+		//read the values from the XML document
+		String itemID = doc.select("itemID").text();
+		
+		String output = itemObj.deleteItem(itemID); 
+		return output;
+
+	}
 
 	
 }
