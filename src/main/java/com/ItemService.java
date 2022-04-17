@@ -29,4 +29,21 @@ public class ItemService {
 		return itemObj.readItems();
 	}
 	
+	@POST
+	@Path("/")
+	//to specify the input type as form data
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	//produce a status message as an output
+	@Produces(MediaType.TEXT_PLAIN)
+	//specifying the form elements as parameters
+	public String insertItem(@FormParam("itemCode") String itemCode,@FormParam("itemName") String itemName,
+			                 @FormParam("itemPrice") String itemPrice, @FormParam("itemDesc") String itemDesc) 
+	{ 
+		String output = itemObj.insertItem(itemCode, itemName, itemPrice, itemDesc);
+		return output;
+
+	}
+
+
+	
 }
