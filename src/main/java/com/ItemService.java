@@ -43,7 +43,29 @@ public class ItemService {
 		return output;
 
 	}
-
+	
+	
+	@PUT
+	@Path("/")
+	//to specify the input type as JSON
+	@Consumes(MediaType.APPLICATION_JSON)
+	//produce a status message as an output
+	@Produces(MediaType.TEXT_PLAIN)
+	public String updateItem(String itemData) 
+	{ 
+		//convert the input string to JSON format
+		JsonObject itemObject = new JsonParser().parse(itemData).getAsJsonObject();
+		
+		//Read the values from the JSON object
+		String itemID = itemObject.get("itemID").getAsString(); 
+		String itemCode = itemObject.get("itemCode").getAsString(); 
+		String itemName = itemObject.get("itemName").getAsString(); 
+		String itemPrice = itemObject.get("itemPrice").getAsString(); 
+		String itemDesc = itemObject.get("itemDesc").getAsString();
+		
+		String output = itemObj.updateItem(itemID, itemCode, itemName, itemPrice, itemDesc);
+		return output;
+	} 
 
 	
 }
